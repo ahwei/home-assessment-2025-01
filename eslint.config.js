@@ -5,7 +5,6 @@ import airbnbReact from 'eslint-config-airbnb';
 import airbnbBase from 'eslint-config-airbnb-base';
 import airbnbTypescript from 'eslint-config-airbnb-typescript';
 import prettierConfig from 'eslint-config-prettier';
-import prettierPlugin from 'eslint-plugin-prettier';
 import reactPlugin from 'eslint-plugin-react';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import globals from 'globals';
@@ -35,7 +34,6 @@ export default [
       '@typescript-eslint': tseslint,
       react: reactPlugin,
       'react-refresh': reactRefresh,
-      prettier: prettierPlugin,
     },
     settings: {
       'import/resolver': {
@@ -51,13 +49,6 @@ export default [
       ...airbnbReact.rules,
       ...airbnbTypescript.rules,
       ...prettierConfig.rules,
-      'prettier/prettier': [
-        'error',
-        {
-          singleQuote: true,
-          parser: 'flow',
-        },
-      ],
       'react/react-in-jsx-scope': 'off',
       'react-refresh/only-export-components': [
         'warn',

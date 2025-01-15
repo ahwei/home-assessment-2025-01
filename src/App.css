@@ -2,7 +2,6 @@
   margin: 0 auto;
 }
 
-/* 自定義 scrollbar 樣式 */
 ::-webkit-scrollbar {
   width: 8px;
 }
