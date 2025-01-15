@@ -5,6 +5,7 @@ import { StyleCard, StyleTabContainer } from './homepage.style';
 
 export const Home = () => {
   const [activeTab, setActiveTab] = useState(0);
+  const [cards] = useState(Array(40).fill(132));
 
   const handleChange = (newValue: number) => {
     setActiveTab(newValue);
@@ -22,12 +23,12 @@ export const Home = () => {
           </Tab>
         </Tabs>
         <TabPanel value={activeTab} index={0}>
-          <Grid gap={1}>
-            <StyleCard>132</StyleCard>
-            <StyleCard>132</StyleCard>
-            <StyleCard>132</StyleCard>
-            <StyleCard>132</StyleCard>
-            <StyleCard>132</StyleCard>
+          <Grid container gap={1}>
+            {cards.map((card, index) => (
+              <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={index}>
+                <StyleCard>{card}</StyleCard>
+              </Grid>
+            ))}
           </Grid>
         </TabPanel>
         <TabPanel value={activeTab} index={1}>

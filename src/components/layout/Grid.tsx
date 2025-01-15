@@ -1,16 +1,18 @@
-import { GridConfig } from '@/types/layout';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 interface GridContainerProps {
   spacing?: number;
   gap?: number;
+  item?: boolean;
+  container?: boolean;
+  xs?: number;
+  sm?: number;
+  md?: number;
+  lg?: number;
+  xl?: number;
 }
 
-interface GridItemProps {
-  grid: GridConfig;
-}
-
-export const GridContainer = styled.div<GridContainerProps>`
+const containerStyles = css<GridContainerProps>`
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: ${({ gap, theme }) => (gap ? theme.spacing(gap) : 0)};
@@ -18,53 +20,58 @@ export const GridContainer = styled.div<GridContainerProps>`
   box-sizing: border-box;
 `;
 
-export const GridItem = styled.div<GridItemProps>`
-  ${({ grid, theme }) => `
+const itemStyles = css<GridContainerProps>`
+  ${({ theme, xs, sm, md, lg, xl }) => `
     ${
-      grid.xs &&
+      xs &&
       `
       @media (min-width: ${theme.breakpoints.xs}) {
-        grid-column: span ${grid.xs};
+        grid-column: span ${xs};
       }
     `
     }
     
     ${
-      grid.sm &&
+      sm &&
       `
       @media (min-width: ${theme.breakpoints.sm}) {
-        grid-column: span ${grid.sm};
+        grid-column: span ${sm};
       }
     `
     }
     
     ${
-      grid.md &&
+      md &&
       `
       @media (min-width: ${theme.breakpoints.md}) {
-        grid-column: span ${grid.md};
+        grid-column: span ${md};
       }
     `
     }
     
     ${
-      grid.lg &&
+      lg &&
       `
       @media (min-width: ${theme.breakpoints.lg}) {
-        grid-column: span ${grid.lg};
+        grid-column: span ${lg};
       }
     `
     }
     
     ${
-      grid.xl &&
+      xl &&
       `
       @media (min-width: ${theme.breakpoints.xl}) {
-        grid-column: span ${grid.xl};
+        grid-column: span ${xl};
       }
     `
     }
   `}
 `;
 
-export default GridContainer;
+export const Grid = styled.div<GridContainerProps>`
+  ${({ container }) => container && containerStyles}
+  ${({ item }) => item && itemStyles}
+`;
+
+export default Grid;
