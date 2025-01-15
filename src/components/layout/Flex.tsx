@@ -1,22 +1,17 @@
+import { AlignItems, FlexDirection, JustifyContent } from '@/types/layout';
 import styled from 'styled-components';
 
 interface FlexProps {
-  justify?:
-    | 'flex-start'
-    | 'flex-end'
-    | 'center'
-    | 'space-between'
-    | 'space-around'
-    | 'space-evenly';
-  align?: 'flex-start' | 'flex-end' | 'center' | 'stretch' | 'baseline';
-  direction?: 'row' | 'column';
+  justify?: JustifyContent;
+  align?: AlignItems;
+  direction?: FlexDirection;
 }
 
 const Flex = styled.div<FlexProps>`
   display: flex;
-  flex-direction: ${({ direction }) => direction || 'row'};
-  justify-content: ${({ justify }) => justify || 'flex-start'};
-  align-items: ${({ align }) => align || 'stretch'};
+  flex-direction: ${({ direction }) => direction || FlexDirection.Row};
+  justify-content: ${({ justify }) => justify || JustifyContent.Start};
+  align-items: ${({ align }) => align || AlignItems.Stretch};
 `;
 
 export default Flex;
