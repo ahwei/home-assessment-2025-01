@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 interface BoxContainerProps {
+  p?: number;
+  m?: number;
   gap?: number;
 }
 
 const Box = styled.div<BoxContainerProps>`
-  padding: ${({ theme }) => theme.spacing(2)};
-  margin: ${({ theme }) => theme.spacing(2)};
+  padding: ${({ theme, p }) => (p ? theme.spacing(p) : 0)};
+  margin: ${({ theme, m }) => (m ? theme.spacing(m) : 0)};
   gap: ${({ theme, gap }) => (gap ? theme.spacing(gap) : 0)};
 `;
 

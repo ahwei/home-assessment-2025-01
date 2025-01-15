@@ -9,7 +9,6 @@ const TabsContainer = styled.div`
 
 const TabList = styled.div`
   display: flex;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.secondary}40;
 `;
 
 interface TabProps {
@@ -67,7 +66,7 @@ interface TabsProps {
   children: React.ReactNode;
 }
 
-export const Tabs: React.FC<TabsProps> = ({ value, onChange, children }) => {
+export const Tabs: React.FC<TabsProps> = ({ children }) => {
   return (
     <TabsContainer>
       <TabList>{children}</TabList>
