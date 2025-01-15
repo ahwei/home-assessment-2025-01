@@ -1,11 +1,11 @@
-import Home from '@/pages/home';
+import Homepage from '@/pages/homepage';
 
 import { createBrowserRouter } from 'react-router-dom';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />,
+    element: <Homepage />,
   },
 ]);
 

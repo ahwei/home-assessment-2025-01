@@ -64,3 +64,5 @@ export const GridItem = styled.div<GridItemProps>`
     }
   `}
 `;
+
+export default GridContainer;
