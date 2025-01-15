@@ -5,6 +5,7 @@ interface FlexProps {
   justify?: JustifyContent;
   align?: AlignItems;
   direction?: FlexDirection;
+  gap?: number;
 }
 
 const Flex = styled.div<FlexProps>`
@@ -12,6 +13,7 @@ const Flex = styled.div<FlexProps>`
   flex-direction: ${({ direction }) => direction || FlexDirection.Row};
   justify-content: ${({ justify }) => justify || JustifyContent.Start};
   align-items: ${({ align }) => align || AlignItems.Stretch};
+  gap: ${({ gap, theme }) => (gap ? theme.spacing(gap) : 0)};
 `;
 
 export default Flex;

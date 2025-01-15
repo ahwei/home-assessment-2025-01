@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 interface GridContainerProps {
   spacing?: number;
+  gap?: number;
 }
 
 interface GridItemProps {
@@ -12,7 +13,7 @@ interface GridItemProps {
 export const GridContainer = styled.div<GridContainerProps>`
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: ${({ spacing, theme }) => (spacing ? theme.spacing(spacing) : 0)};
+  gap: ${({ gap, theme }) => (gap ? theme.spacing(gap) : 0)};
   width: 100%;
 `;
 
