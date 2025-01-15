@@ -15,6 +15,7 @@ export const GridContainer = styled.div<GridContainerProps>`
   grid-template-columns: repeat(12, 1fr);
   gap: ${({ gap, theme }) => (gap ? theme.spacing(gap) : 0)};
   width: 100%;
+  box-sizing: border-box;
 `;
 
 export const GridItem = styled.div<GridItemProps>`

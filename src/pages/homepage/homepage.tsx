@@ -1,7 +1,7 @@
-import { Container } from '@/components/layout';
+import { Container, Grid } from '@/components/layout';
 import { Tab, TabPanel, Tabs } from '@/components/layout/Tabs';
 import { useState } from 'react';
-import { StyleTabContainer } from './homepage.style';
+import { StyleCard, StyleTabContainer } from './homepage.style';
 
 export const Home = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -22,7 +22,13 @@ export const Home = () => {
           </Tab>
         </Tabs>
         <TabPanel value={activeTab} index={0}>
-          Tab 內容 1
+          <Grid gap={1}>
+            <StyleCard>132</StyleCard>
+            <StyleCard>132</StyleCard>
+            <StyleCard>132</StyleCard>
+            <StyleCard>132</StyleCard>
+            <StyleCard>132</StyleCard>
+          </Grid>
         </TabPanel>
         <TabPanel value={activeTab} index={1}>
           Tab 內容 2

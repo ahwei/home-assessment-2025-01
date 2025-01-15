@@ -14,6 +14,7 @@ const Flex = styled.div<FlexProps>`
   justify-content: ${({ justify }) => justify || JustifyContent.Start};
   align-items: ${({ align }) => align || AlignItems.Stretch};
   gap: ${({ gap, theme }) => (gap ? theme.spacing(gap) : 0)};
+  box-sizing: border-box;
 `;
 
 export default Flex;

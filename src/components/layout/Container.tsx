@@ -5,6 +5,11 @@ const Container = styled.div`
   max-width: 1280px;
   margin: 0 auto;
   padding: ${({ theme }) => theme.spacing(3)};
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    padding: ${({ theme }) => theme.spacing(2)};
+  }
 `;
 
 export default Container;
