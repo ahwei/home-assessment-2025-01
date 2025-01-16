@@ -5,6 +5,18 @@ const theme: DefaultTheme = {
     primary: '#0070f3',
     secondary: '#dedede',
     main: '#1a73e8',
+    error: {
+      light: '#FF6D6D',
+      main: '#FF2D2D',
+      dark: '#CE0000',
+    },
+    success: {
+      light: '#02FFC2',
+      main: '#02DF82',
+      dark: '#02C874',
+    },
+    disabled: '#cccccc',
+    white: '#ffffff',
     grey: {
       100: '#f5f5f5',
       200: '#eeeeee',

@@ -24,7 +24,6 @@ export const StyleCard = styled(Box)`
   height: 150px;
   display: flex;
   flex-direction: column;
-  cursor: pointer;
   @media (max-width: 768px) {
     padding: 8px;
   }

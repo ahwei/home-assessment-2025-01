@@ -1,5 +1,6 @@
 import { Container, Grid } from '@/components/layout';
 import { Tab, TabPanel, Tabs } from '@/components/layout/Tabs';
+import { useGetStudentsQuery } from '@/services/studentApi';
 import { openDialog } from '@/store/slices/dialogSlice';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -9,7 +10,7 @@ import StudentDetail from './StudentDetail';
 
 export const Home = () => {
   const [activeTab, setActiveTab] = useState(0);
-  const [cards] = useState(Array(40).fill(132));
+  const { data, isError, isLoading } = useGetStudentsQuery('');
   const dispatch = useDispatch();
 
   const handleChange = (newValue: number) => {
@@ -39,20 +40,24 @@ export const Home = () => {
         </Tabs>
         <TabPanel value={activeTab} index={0}>
           <Grid container gap={1} spacing={1}>
-            {cards.map((_, index) => (
-              <Grid
-                item
-                xs={12}
-                sm={6}
-                md={4}
-                lg={3}
-                xl={2}
-                key={index}
-                spacing={1}
-              >
-                <Student onClick={handleOpenDetail} />
-              </Grid>
-            ))}
+            {isLoading && <div>Loading...</div>}
+            {isError && <div>Error ,Please try later</div>}
+            {!isLoading &&
+              !isError &&
+              data?.students.map((student) => (
+                <Grid
+                  item
+                  xs={12}
+                  sm={6}
+                  md={4}
+                  lg={3}
+                  xl={2}
+                  key={student.id}
+                  spacing={1}
+                >
+                  <Student student={student} onClick={handleOpenDetail} />
+                </Grid>
+              ))}
           </Grid>
         </TabPanel>
         <TabPanel value={activeTab} index={1}>
