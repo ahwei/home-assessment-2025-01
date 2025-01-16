@@ -1,4 +1,5 @@
 import { Box, Flex } from '@/components/layout';
+import { Student as StudentType } from '@/types/student';
 import styled from 'styled-components';
 import { StyleCard } from './homepage.style';
 
@@ -9,7 +10,7 @@ interface StyleCardHeadProps {
 const StyleCardHead = styled(Box)<StyleCardHeadProps>`
   background-color: ${({ theme, isActive }) =>
     isActive ? theme.colors.primary : theme.colors.secondary};
-  color: white;
+  color: ${({ theme }) => theme.colors.white};
   width: 100%;
   padding: 4px;
   text-align: center;
@@ -18,10 +19,11 @@ const StyleCardHead = styled(Box)<StyleCardHeadProps>`
   border-top-left-radius: 4px;
 `;
 
-const StyleCardBody = styled(Flex)`
+const StyleCardBody = styled(Flex)<{ disabled?: boolean }>`
   justify-content: center;
   align-items: center;
   flex: 1;
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
 `;
 
 const StyleCardFooter = styled(Flex)`
@@ -33,40 +35,58 @@ const StyleCardFooter = styled(Flex)`
 `;
 
 const StyleButton = styled.button<{ color?: 'red' | 'green' }>`
-  color: white;
-  background-color: ${({ color }) => (color === 'red' ? '#FF2D2D' : '#02DF82')};
+  color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ color, theme }) =>
+    color === 'red' ? theme.colors.error.main : theme.colors.success.main};
   border-radius: 4px;
   border: none;
   padding: 4px 8px;
   cursor: pointer;
   &:hover {
-    background-color: ${({ color }) =>
-      color === 'red' ? '#CE0000' : '#02C874'};
+    background-color: ${({ color, theme }) =>
+      color === 'red' ? theme.colors.error.dark : theme.colors.success.dark};
   }
   &:active {
-    background-color: ${({ color }) =>
-      color === 'red' ? '#FF6D6D' : '#02FFC2'};
+    background-color: ${({ color, theme }) =>
+      color === 'red' ? theme.colors.error.light : theme.colors.success.light};
+  }
+  &:disabled {
+    background-color: ${({ theme }) => theme.colors.disabled};
+    cursor: not-allowed;
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.disabled};
+    }
+    &:active {
+      background-color: ${({ theme }) => theme.colors.disabled};
+    }
   }
 `;
 
 interface StudentProps {
-  isActive?: boolean;
+  student: StudentType;
   onClick?: () => void;
 }
 
-const Student = ({ isActive = true, onClick }: StudentProps) => {
+const Student = ({ student, onClick }: StudentProps) => {
+  const { id, name, isActive = true, score } = student;
+
   return (
-    <StyleCard onClick={onClick}>
-      <StyleCardHead isActive={isActive}>1</StyleCardHead>
-      <StyleCardBody>
-        <p>
-          <b>AhWei</b>
-        </p>
+    <StyleCard>
+      <StyleCardHead isActive={isActive}>{id}</StyleCardHead>
+      <StyleCardBody
+        disabled={!isActive}
+        onClick={isActive ? onClick : undefined}
+      >
+        <h4>
+          <b>{name}</b>
+        </h4>
       </StyleCardBody>
       <StyleCardFooter>
-        <StyleButton color="red">-1</StyleButton>
-        <p>Footer</p>
-        <StyleButton>+1</StyleButton>
+        <StyleButton color="red" disabled={!isActive}>
+          -1
+        </StyleButton>
+        <p>{score}</p>
+        <StyleButton disabled={!isActive}>+1</StyleButton>
       </StyleCardFooter>
     </StyleCard>
   );
