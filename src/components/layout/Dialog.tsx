@@ -1,4 +1,3 @@
-import { AlignItems, JustifyContent } from '@/types/layout';
 import styled from 'styled-components';
 
 interface DialogProps {
@@ -15,14 +14,14 @@ const DialogOverlay = styled.div<{ open: boolean }>`
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
   display: ${({ open }) => (open ? 'flex' : 'none')};
-  align-items: ${AlignItems.Center};
-  justify-content: ${JustifyContent.Center};
+  align-items: center;
+  justify-content: center;
   z-index: 1000;
 `;
 
 const DialogContent = styled.div<{ open: boolean }>`
   background-color: white;
-  padding: 24px;
+  padding: 8px;
   border-radius: 4px;
   min-width: 300px;
   max-width: 600px;
@@ -34,6 +33,7 @@ const DialogContent = styled.div<{ open: boolean }>`
     open ? 'scale(1)' : 'scale(0.9)'};
   opacity: ${({ open }: { open: boolean }) => (open ? '1' : '0')};
   transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+  box-sizing: border-box;
 `;
 
 const Dialog: React.FC<DialogProps> = ({ open, onClose, children }) => {

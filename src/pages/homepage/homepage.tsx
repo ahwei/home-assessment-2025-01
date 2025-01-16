@@ -21,7 +21,7 @@ export const Home = () => {
       openDialog({
         classId: 'CLASS001',
         studentId: 'STU001',
-        link: 'https://example.com',
+        link: 'https://www.classswift.viewsonic.io/',
       }),
     );
   };
