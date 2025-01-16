@@ -18,6 +18,7 @@ declare module 'styled-components' {
       };
       disabled: string;
       white: string;
+      black: string;
       grey: {
         100: string;
         200: string;

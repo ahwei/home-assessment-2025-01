@@ -17,6 +17,7 @@ const theme: DefaultTheme = {
     },
     disabled: '#cccccc',
     white: '#ffffff',
+    black: '#000000',
     grey: {
       100: '#f5f5f5',
       200: '#eeeeee',

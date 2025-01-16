@@ -9,6 +9,7 @@ const TabsContainer = styled.div`
 
 const TabList = styled.div`
   display: flex;
+  gap: 4px;
 `;
 
 interface TabProps {
@@ -18,17 +19,18 @@ interface TabProps {
 const Tab = styled.button<TabProps>`
   padding: ${({ theme }) => theme.spacing(2)} ${({ theme }) => theme.spacing(3)};
   border: none;
-  background: none;
+  background: ${({ selected, theme }) =>
+    selected ? theme.colors.white : theme.colors.disabled};
+  min-width: 150px;
   cursor: pointer;
   color: ${({ selected, theme }) =>
-    selected ? theme.colors.primary : theme.colors.secondary};
-  border-bottom: 2px solid
-    ${({ selected, theme }) =>
-      selected ? theme.colors.primary : 'transparent'};
+    selected ? theme.colors.primary : theme.colors.black};
   transition: all 0.3s;
-
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  font-weight: 900;
   &:hover {
-    background-color: ${({ theme }) => theme.colors.secondary}10;
+    background-color: ${({ theme }) => theme.colors.disabled}9A;
   }
 `;
 
