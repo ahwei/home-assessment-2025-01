@@ -64,7 +64,7 @@ const StyleButton = styled.button<{ color?: 'red' | 'green' }>`
 
 interface StudentProps {
   student: StudentType;
-  onClick?: () => void;
+  onClick?: (studentId: number) => void;
 }
 
 const Student = ({ student, onClick }: StudentProps) => {
@@ -75,7 +75,11 @@ const Student = ({ student, onClick }: StudentProps) => {
       <StyleCardHead isActive={isActive}>{id}</StyleCardHead>
       <StyleCardBody
         disabled={!isActive}
-        onClick={isActive ? onClick : undefined}
+        onClick={() => {
+          if (isActive && onClick) {
+            onClick(id);
+          }
+        }}
       >
         <h4>
           <b>{name}</b>

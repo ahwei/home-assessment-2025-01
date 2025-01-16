@@ -53,7 +53,7 @@ export const StudentDetail: React.FC = () => {
 
   const handleCopyId = () => {
     if (studentData?.studentId) {
-      navigator.clipboard.writeText(studentData.studentId);
+      navigator.clipboard.writeText(studentData.studentId?.toString());
       toast.success('Id is copied to clipboard');
     }
   };
