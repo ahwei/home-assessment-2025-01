@@ -32,15 +32,16 @@ export const Home = () => {
           </p>
         )}
       </Flex>
+
+      <Tabs value={activeTab} onChange={handleChange}>
+        <Tab selected={activeTab === 0} onClick={() => handleChange(0)}>
+          StudentList
+        </Tab>
+        <Tab selected={activeTab === 1} onClick={() => handleChange(1)}>
+          Group
+        </Tab>
+      </Tabs>
       <StyleTabContainer>
-        <Tabs value={activeTab} onChange={handleChange}>
-          <Tab selected={activeTab === 0} onClick={() => handleChange(0)}>
-            StudentList
-          </Tab>
-          <Tab selected={activeTab === 1} onClick={() => handleChange(1)}>
-            Group
-          </Tab>
-        </Tabs>
         <TabPanel value={activeTab} index={0}>
           <Grid container gap={1} spacing={1}>
             {isLoading && <div>Loading...</div>}
