@@ -1,4 +1,5 @@
 import { Box, Flex } from '@/components/layout';
+import { useUpdateStudentScoreMutation } from '@/services/studentApi';
 import { Student as StudentType } from '@/types/student';
 import styled from 'styled-components';
 import { StyleCard } from './homepage.style';
@@ -64,29 +65,51 @@ const StyleButton = styled.button<{ color?: 'red' | 'green' }>`
 
 interface StudentProps {
   student: StudentType;
-  onClick?: () => void;
+  onClick?: (studentId: number) => void;
 }
 
 const Student = ({ student, onClick }: StudentProps) => {
   const { id, name, isActive = true, score } = student;
+  const [updateScore] = useUpdateStudentScoreMutation();
+
+  const handleScoreChange = (increment: number) => {
+    const newScore = Math.max(0, score + increment);
+    if (newScore !== score) {
+      updateScore({ id, score: newScore });
+    }
+  };
 
   return (
     <StyleCard>
       <StyleCardHead isActive={isActive}>{id}</StyleCardHead>
       <StyleCardBody
         disabled={!isActive}
-        onClick={isActive ? onClick : undefined}
+        onClick={() => {
+          if (isActive && onClick) {
+            onClick(id);
+          }
+        }}
       >
         <h4>
           <b>{name}</b>
         </h4>
       </StyleCardBody>
       <StyleCardFooter>
-        <StyleButton color="red" disabled={!isActive}>
+        <StyleButton
+          color="red"
+          disabled={!isActive}
+          onClick={() => {
+            if (score > 0) {
+              handleScoreChange(-1);
+            }
+          }}
+        >
           -1
         </StyleButton>
         <p>{score}</p>
-        <StyleButton disabled={!isActive}>+1</StyleButton>
+        <StyleButton disabled={!isActive} onClick={() => handleScoreChange(1)}>
+          +1
+        </StyleButton>
       </StyleCardFooter>
     </StyleCard>
   );

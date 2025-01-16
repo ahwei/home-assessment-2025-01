@@ -1,8 +1,9 @@
-import { Container, Grid } from '@/components/layout';
+import { Container, Flex, Grid } from '@/components/layout';
 import { Tab, TabPanel, Tabs } from '@/components/layout/Tabs';
 import { useGetStudentsQuery } from '@/services/studentApi';
 import { openDialog } from '@/store/slices/dialogSlice';
-import { useState } from 'react';
+import { People } from '@styled-icons/material';
+import { useMemo, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { StyleTabContainer } from './homepage.style';
 import Student from './Student';
@@ -17,18 +18,31 @@ export const Home = () => {
     setActiveTab(newValue);
   };
 
-  const handleOpenDetail = () => {
+  const handleOpenDetail = (studentId: number) => {
     dispatch(
       openDialog({
         classId: 'CLASS001',
-        studentId: 'STU001',
+        studentId: studentId,
         link: 'https://www.classswift.viewsonic.io/',
       }),
     );
   };
+  const activeStudents = useMemo(() => {
+    return data?.students.filter((student) => student.isActive).length || 0;
+  }, [data?.students]);
 
   return (
     <Container>
+      <Flex align="center" gap={1}>
+        <h1>302 Science </h1>
+
+        <People size={32} />
+        {!isLoading && !isError && (
+          <p>
+            {activeStudents} / {data?.students.length || 0}
+          </p>
+        )}
+      </Flex>
       <StyleTabContainer>
         <Tabs value={activeTab} onChange={handleChange}>
           <Tab selected={activeTab === 0} onClick={() => handleChange(0)}>

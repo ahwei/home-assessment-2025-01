@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface StudentDetailData {
   classId: string;
-  studentId: string;
+  studentId: number;
   link: string;
 }
 
