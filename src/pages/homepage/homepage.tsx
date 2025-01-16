@@ -1,10 +1,9 @@
 import { Container, Flex, Grid } from '@/components/layout';
 import { Tab, TabPanel, Tabs } from '@/components/layout/Tabs';
 import { useGetStudentsQuery } from '@/services/studentApi';
-import { openDialog } from '@/store/slices/dialogSlice';
 import { People } from '@styled-icons/material';
 import { useMemo, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import Group from './Group';
 import { StyleTabContainer } from './homepage.style';
 import Student from './Student';
 import StudentDetail from './StudentDetail';
@@ -12,21 +11,11 @@ import StudentDetail from './StudentDetail';
 export const Home = () => {
   const [activeTab, setActiveTab] = useState(0);
   const { data, isError, isLoading } = useGetStudentsQuery('');
-  const dispatch = useDispatch();
 
   const handleChange = (newValue: number) => {
     setActiveTab(newValue);
   };
 
-  const handleOpenDetail = (studentId: number) => {
-    dispatch(
-      openDialog({
-        classId: 'CLASS001',
-        studentId: studentId,
-        link: 'https://www.classswift.viewsonic.io/',
-      }),
-    );
-  };
   const activeStudents = useMemo(() => {
     return data?.students.filter((student) => student.isActive).length || 0;
   }, [data?.students]);
@@ -69,13 +58,13 @@ export const Home = () => {
                   key={student.id}
                   spacing={1}
                 >
-                  <Student student={student} onClick={handleOpenDetail} />
+                  <Student student={student} />
                 </Grid>
               ))}
           </Grid>
         </TabPanel>
         <TabPanel value={activeTab} index={1}>
-          Tab 內容 2
+          <Group students={data?.students || []} />
         </TabPanel>
       </StyleTabContainer>
 

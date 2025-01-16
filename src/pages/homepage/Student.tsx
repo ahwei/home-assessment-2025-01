@@ -1,9 +1,10 @@
 import { Box, Flex } from '@/components/layout';
 import { useUpdateStudentScoreMutation } from '@/services/studentApi';
+import { openDialog } from '@/store/slices/dialogSlice';
 import { Student as StudentType } from '@/types/student';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { StyleCard } from './homepage.style';
-
 interface StyleCardHeadProps {
   isActive?: boolean;
 }
@@ -65,10 +66,10 @@ const StyleButton = styled.button<{ color?: 'red' | 'green' }>`
 
 interface StudentProps {
   student: StudentType;
-  onClick?: (studentId: number) => void;
 }
 
-const Student = ({ student, onClick }: StudentProps) => {
+const Student = ({ student }: StudentProps) => {
+  const dispatch = useDispatch();
   const { id, name, isActive = true, score } = student;
   const [updateScore] = useUpdateStudentScoreMutation();
 
@@ -79,14 +80,24 @@ const Student = ({ student, onClick }: StudentProps) => {
     }
   };
 
+  const handleOpenDetail = (studentId: number) => {
+    dispatch(
+      openDialog({
+        classId: 'CLASS001',
+        studentId: studentId,
+        link: 'https://www.classswift.viewsonic.io/',
+      }),
+    );
+  };
+
   return (
     <StyleCard>
       <StyleCardHead isActive={isActive}>{id}</StyleCardHead>
       <StyleCardBody
         disabled={!isActive}
         onClick={() => {
-          if (isActive && onClick) {
-            onClick(id);
+          if (isActive) {
+            handleOpenDetail(id);
           }
         }}
       >
