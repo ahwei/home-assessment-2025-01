@@ -21,16 +21,8 @@ const containerStyles = css<GridContainerProps>`
 `;
 
 const itemStyles = css<GridContainerProps>`
-  ${({ theme, xs, sm, md, lg, xl }) => `
-    ${
-      xs &&
-      `
-      @media (min-width: ${theme.breakpoints.xs}) {
-        grid-column: span ${xs};
-      }
-    `
-    }
-    
+  ${({ xs }) => xs && `grid-column: span ${xs};`}
+  ${({ theme, sm, md, lg, xl }) => `
     ${
       sm &&
       `
