@@ -4,6 +4,7 @@ import { closeDialog } from '@/store/slices/dialogSlice';
 import { RootState } from '@/store/store';
 import { ArrowBack, Close, ContentCopy } from '@styled-icons/material';
 import QRCodeLink from 'react-qr-code';
+import { toast } from 'react-toastify';
 import styled from 'styled-components';
 
 const IconButton = styled.button`
@@ -53,12 +54,14 @@ export const StudentDetail: React.FC = () => {
   const handleCopyId = () => {
     if (studentData?.studentId) {
       navigator.clipboard.writeText(studentData.studentId);
+      toast.success('Id is copied to clipboard');
     }
   };
 
   const handleCopyLink = () => {
     if (studentData?.link) {
       navigator.clipboard.writeText(studentData.link);
+      toast.success('Link is copied to clipboard');
     }
   };
 
