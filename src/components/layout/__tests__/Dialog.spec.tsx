@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 import { screen } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import Dialog from '../Dialog';
 import { renderWithTheme } from './test-utils';
 
