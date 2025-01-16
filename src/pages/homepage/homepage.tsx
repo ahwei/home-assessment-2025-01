@@ -1,7 +1,8 @@
 import { Container, Grid } from '@/components/layout';
 import { Tab, TabPanel, Tabs } from '@/components/layout/Tabs';
 import { useState } from 'react';
-import { StyleCard, StyleTabContainer } from './homepage.style';
+import { StyleTabContainer } from './homepage.style';
+import Student from './Student';
 
 export const Home = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -23,10 +24,19 @@ export const Home = () => {
           </Tab>
         </Tabs>
         <TabPanel value={activeTab} index={0}>
-          <Grid container gap={1}>
-            {cards.map((card, index) => (
-              <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={index}>
-                <StyleCard>{card}</StyleCard>
+          <Grid container gap={1} spacing={1}>
+            {cards.map((_, index) => (
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={4}
+                lg={3}
+                xl={2}
+                key={index}
+                spacing={1}
+              >
+                <Student />
               </Grid>
             ))}
           </Grid>

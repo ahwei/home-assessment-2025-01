@@ -72,6 +72,7 @@ const itemStyles = css<GridContainerProps>`
 export const Grid = styled.div<GridContainerProps>`
   ${({ container }) => container && containerStyles}
   ${({ item }) => item && itemStyles}
+  padding: ${({ spacing, theme }) => (spacing ? theme.spacing(spacing) : 0)};
 `;
 
 export default Grid;
