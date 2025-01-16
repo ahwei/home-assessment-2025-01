@@ -1,15 +1,29 @@
 import { Container, Grid } from '@/components/layout';
 import { Tab, TabPanel, Tabs } from '@/components/layout/Tabs';
+import { openDialog } from '@/store/slices/dialogSlice';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { StyleTabContainer } from './homepage.style';
 import Student from './Student';
+import StudentDetail from './StudentDetail';
 
 export const Home = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [cards] = useState(Array(40).fill(132));
+  const dispatch = useDispatch();
 
   const handleChange = (newValue: number) => {
     setActiveTab(newValue);
+  };
+
+  const handleOpenDetail = () => {
+    dispatch(
+      openDialog({
+        classId: 'CLASS001',
+        studentId: 'STU001',
+        link: 'https://example.com',
+      }),
+    );
   };
 
   return (
@@ -36,7 +50,7 @@ export const Home = () => {
                 key={index}
                 spacing={1}
               >
-                <Student />
+                <Student onClick={handleOpenDetail} />
               </Grid>
             ))}
           </Grid>
@@ -45,6 +59,8 @@ export const Home = () => {
           Tab 內容 2
         </TabPanel>
       </StyleTabContainer>
+
+      <StudentDetail />
     </Container>
   );
 };

@@ -51,11 +51,12 @@ const StyleButton = styled.button<{ color?: 'red' | 'green' }>`
 
 interface StudentProps {
   isActive?: boolean;
+  onClick?: () => void;
 }
 
-const Student = ({ isActive = true }: StudentProps) => {
+const Student = ({ isActive = true, onClick }: StudentProps) => {
   return (
-    <StyleCard>
+    <StyleCard onClick={onClick}>
       <StyleCardHead isActive={isActive}>1</StyleCardHead>
       <StyleCardBody>
         <p>
