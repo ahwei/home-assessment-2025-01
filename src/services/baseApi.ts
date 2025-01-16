@@ -1,5 +1,5 @@
+import studentsData from '@/data/students.json';
 import { createApi } from '@reduxjs/toolkit/query/react';
-import studentsData from '../data/students.json';
 
 const mockBaseQuery = () => async () => {
   await new Promise((resolve) => setTimeout(resolve, 1000));

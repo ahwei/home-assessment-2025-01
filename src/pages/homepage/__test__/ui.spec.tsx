@@ -1,7 +1,6 @@
 import dialogReducer from '@/store/slices/dialogSlice';
 import theme from '@/theme';
 import { configureStore } from '@reduxjs/toolkit';
-import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';

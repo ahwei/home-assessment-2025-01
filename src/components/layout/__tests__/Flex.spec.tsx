@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom';
 import { describe, expect, it } from 'vitest';
 import Flex from '../Flex';
 import { renderWithTheme } from './test-utils';

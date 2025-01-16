@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom';
 import { screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { Tab, TabPanel, Tabs } from '../Tabs';

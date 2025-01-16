@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom';
 import { describe, expect, it } from 'vitest';
 import Box from '../Box';
 import { renderWithTheme } from './test-utils';
