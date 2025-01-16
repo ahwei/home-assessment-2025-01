@@ -37,6 +37,8 @@ const DialogContent = styled.div<{ open: boolean }>`
 `;
 
 const Dialog: React.FC<DialogProps> = ({ open, onClose, children }) => {
+  if (!open) return null;
+
   return (
     <DialogOverlay open={open} onClick={onClose}>
       <DialogContent open={open} onClick={(e) => e.stopPropagation()}>
