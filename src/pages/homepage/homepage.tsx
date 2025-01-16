@@ -1,7 +1,7 @@
-import { Container, Flex, Grid } from '@/components/layout';
+import { Container, Flex, Grid, Tooltip } from '@/components/layout';
 import { Tab, TabPanel, Tabs } from '@/components/layout/Tabs';
 import { useGetStudentsQuery } from '@/services/studentApi';
-import { People } from '@styled-icons/material';
+import { MoreVert, People } from '@styled-icons/material';
 import { useMemo, useState } from 'react';
 import Group from './Group';
 import { StyleTabContainer } from './homepage.style';
@@ -33,14 +33,19 @@ export const Home = () => {
         )}
       </Flex>
 
-      <Tabs value={activeTab} onChange={handleChange}>
-        <Tab selected={activeTab === 0} onClick={() => handleChange(0)}>
-          StudentList
-        </Tab>
-        <Tab selected={activeTab === 1} onClick={() => handleChange(1)}>
-          Group
-        </Tab>
-      </Tabs>
+      <Flex justify="space-between" align="center">
+        <Tabs value={activeTab} onChange={handleChange}>
+          <Tab selected={activeTab === 0} onClick={() => handleChange(0)}>
+            StudentList
+          </Tab>
+          <Tab selected={activeTab === 1} onClick={() => handleChange(1)}>
+            Group
+          </Tab>
+        </Tabs>
+        <Tooltip title="this is tooltip">
+          <MoreVert size={24} />
+        </Tooltip>
+      </Flex>
       <StyleTabContainer>
         <TabPanel value={activeTab} index={0}>
           <Grid container gap={1} spacing={1}>

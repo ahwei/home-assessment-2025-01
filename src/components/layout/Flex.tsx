@@ -6,6 +6,7 @@ interface FlexProps {
   align?: AlignItems;
   direction?: FlexDirection;
   gap?: number;
+  spacing?: number;
 }
 
 const Flex = styled.div<FlexProps>`
@@ -15,6 +16,7 @@ const Flex = styled.div<FlexProps>`
   align-items: ${({ align }) => align || 'stretch'};
   gap: ${({ gap, theme }) => (gap ? theme.spacing(gap) : 0)};
   box-sizing: border-box;
+  padding: ${({ spacing, theme }) => (spacing ? theme.spacing(spacing) : 0)};
 `;
 
 export default Flex;

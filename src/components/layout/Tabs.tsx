@@ -20,11 +20,11 @@ const Tab = styled.button<TabProps>`
   padding: ${({ theme }) => theme.spacing(2)} ${({ theme }) => theme.spacing(3)};
   border: none;
   background: ${({ selected, theme }) =>
-    selected ? 'white' : theme.colors.disabled};
+    selected ? theme.colors.white : theme.colors.disabled};
   min-width: 150px;
   cursor: pointer;
   color: ${({ selected, theme }) =>
-    selected ? theme.colors.primary : 'black'};
+    selected ? theme.colors.primary : theme.colors.black};
   transition: all 0.3s;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
